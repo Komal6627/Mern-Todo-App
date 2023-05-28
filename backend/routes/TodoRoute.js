@@ -1,10 +1,10 @@
 import express from "express";
+import { createList, getList,  } from "../controllers/TodoControllers.js";
 
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-    res.json({message: "This is get request"});
-})
+router.get('/',getList);
+router.post('/',createList);
 
 
 export default router;
