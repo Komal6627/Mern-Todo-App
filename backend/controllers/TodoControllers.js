@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import TodoModule from "../modules/TodoModule.js";
 
 export const getList =async (req,res) => {
@@ -12,17 +13,6 @@ export const getList =async (req,res) => {
     }
  }
 
-// export const postTodo = async(req,res)=>{
-//     const body = req.body
-
-//     TodoModule.create(body)
-//     .then((data) =>{
-//         console.log("Added Successfully");
-//         console.log(data);
-//         res.send(data);
-//     })
-// }
-
 export const createList =async (req, res) =>{
     const body = req.body
 
@@ -35,3 +25,26 @@ export const createList =async (req, res) =>{
         res.status(409).json({message: error.message})
     }
 }
+
+export const updateList = async(req,res) =>{
+    const {id:_id} = req.params;
+    const list= req.body;
+    if (!mongoose.Types.ObjectId.isValid(_id)) 
+        return res.status(404).send('No List with this id');
+
+    const updatedList =await  TodoModule.findByIdAndUpdate(_id, list, {new: true} );
+    
+    res.json(updatedList);
+}
+
+export const deleteList = async(req,res) => {
+    const {id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) 
+    return res.status(404).send('No list with that id');
+
+    await  TodoModule.findByIdAndRemove(id);
+
+    res.json({message: 'List deleted successfully'});
+}
+
