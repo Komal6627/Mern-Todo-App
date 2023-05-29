@@ -38,7 +38,7 @@ export const updateList = async(req,res) =>{
 }
 
 export const deleteList = async(req,res) => {
-    const {_id} = req.params;
+    const {id:_id} = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(_id)) 
     return res.status(404).send('No list with that id');

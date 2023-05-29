@@ -14,5 +14,10 @@ export const getAllTodo = (setTodo) => {
 };
 
 export const addToDo = (text,setText,setToDo) =>{
-        
+        axios.post(`${baseURL}`,{text})
+        .then((data)=>{
+            console.log(data);
+            setText("")
+            getAllTodo(setToDo)
+        })
 }
