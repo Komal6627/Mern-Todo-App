@@ -1,10 +1,15 @@
 import './App.css';
+import AddTodo from './components/AddTodo';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
-          <h1>Hello World</h1>
-    </div>
+     <>
+        <div>
+          <Navbar/>
+          <AddTodo/>
+        </div>
+     </>
   );
 }
 
