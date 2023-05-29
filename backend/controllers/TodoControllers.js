@@ -14,9 +14,9 @@ export const getList =async (req,res) => {
  }
 
 export const createList =async (req, res) =>{
-    const body = req.body
+    const text = req.body
 
-    const newList = new TodoModule(body);
+    const newList = new TodoModule(text);
     try {
         await newList.save();
 
@@ -38,12 +38,12 @@ export const updateList = async(req,res) =>{
 }
 
 export const deleteList = async(req,res) => {
-    const {id} = req.params;
+    const {_id} = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) 
+    if (!mongoose.Types.ObjectId.isValid(_id)) 
     return res.status(404).send('No list with that id');
 
-    await  TodoModule.findByIdAndRemove(id);
+    await  TodoModule.findByIdAndRemove(_id);
 
     res.json({message: 'List deleted successfully'});
 }
