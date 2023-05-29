@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoSendSharp } from 'react-icons/io5'
 import TodoList from './TodoList'
-import { addToDo, getAllTodo, updateTodo } from '../utils/HandleApi'
+import { addToDo, deleteTodo, getAllTodo, updateTodo } from '../utils/HandleApi'
 const AddTodo = () => {
   const [todo, setToDo] = useState([])
   const [text, setText] = useState('')
@@ -55,6 +55,7 @@ const AddTodo = () => {
                 key={item._id}
                 text={item.text}
                 updateMode={() => updateMode(item._id, item.text)}
+                deleteToDo={() => deleteTodo(item._id, setToDo)}
               />
             ))
           ) : (

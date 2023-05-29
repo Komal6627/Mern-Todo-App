@@ -36,7 +36,7 @@ export const updateTodo = (todoId, text, setToDo, setText, setIsUpdating) => {
       .catch((err) => console.log(err));
   };
 
-  export const deleteTodo = (todoId, text, setToDo, setText, setIsUpdating) => {
+  export const deleteTodo = (todoId,setToDo) => {
     axios
       .delete(`${baseURL}/${todoId}`)
       .then((response) => {
